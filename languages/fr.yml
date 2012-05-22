@@ -1,0 +1,18 @@
+taxedo:
+  fr:
+    subtotal: Sous-total
+    total: Total
+
+    regions:
+      can:
+        name: Canada
+        taxes:
+          gst:
+            short: TPS
+      quebec:
+        name: Québec
+        taxes:
+          gst:
+            short: TPS
+          qst:
+            short: TVQ

@@ -1,0 +1,18 @@
+taxedo:
+  en:
+    subtotal: Subtotal
+    total: Total
+
+    regions:
+      can:
+        name: Canada
+        taxes:
+          gst:
+            short: GST
+      quebec:
+        name: Québec
+        taxes:
+          gst:
+            short: GST
+          qst:
+            short: QST
