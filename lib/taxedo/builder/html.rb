@@ -6,7 +6,10 @@ class Taxedo::Builder::Html < Taxedo::Builder::Base
       else table
     end
 
-    return @content.join("\n")
+    @content = @content.join("\n")
+    @content = @content.html_safe if @content.respond_to? :html_safe
+
+    return @content
   end
 
   private

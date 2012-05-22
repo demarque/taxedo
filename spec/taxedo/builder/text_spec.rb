@@ -4,12 +4,12 @@ describe Taxedo::Builder::Text do
   #*************************************************************************************
   # PUBLIC INSTANCE METHODS
   #*************************************************************************************
-  context "with a quebec receipt of 10,00$" do
-    let(:receipt) { Taxedo::Region.new('quebec').calculate(1000) }
+  context "with a quebec receipt of 100$" do
+    let(:receipt) { Taxedo::Region.new('quebec').calculate(10000) }
 
     describe "#generate" do
       subject { Taxedo::Builder::Text.new(receipt).generate }
-      it { should eql "Sous-total .... 10,00$\nTPS ...........  0,50$\nTVQ ...........  0,99$\nTotal ......... 11,49$"  }
+      it { should eql "Sous-total .... 100,00$\nTPS ...........  5,00$\nTVQ ...........  9,98$\nTotal ......... 114,98$"  }
     end
   end
 end

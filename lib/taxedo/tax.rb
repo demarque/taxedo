@@ -23,6 +23,6 @@ class Taxedo::Tax
   private
 
   def calculate_amount
-    ((@source_amount * @rate).round / 10000)
+    ((@source_amount * @rate).to_f / 10000).round
   end
 end
