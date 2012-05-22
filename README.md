@@ -37,7 +37,7 @@ tax_for 'quebec', 1000, format: :html
 
 ### Parameters
 
-* **region**: Region of the tax. *See supported regions*.
+* **region**: Region of the tax. *See [regions documentation](https://github.com/demarque/taxedo/blob/master/data/README.md)*.
 * **amount**: Amount in cents.
 * **options**: Set of options. *See below*.
 

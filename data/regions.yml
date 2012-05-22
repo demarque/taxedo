@@ -27,6 +27,7 @@ taxedo:
 
       rules:
         standard: ['gst', 'qst']
+        books: ['gst']
 
       taxes:
         gst:
