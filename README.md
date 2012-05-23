@@ -46,7 +46,7 @@ tax_for 'quebec', 1000, format: :html
 * **format**: Format of the output ( _hash, html, json, **text**_ ).
 * **on**: Date parameter. Taxedo should use tax rate active for a particular date.
 * **html_options**: hash of options for the html output
-  * **format**: Format of the output ( _lines, rows, **table**_ ).
+  * **template**: HTML Template for the output ( _lines, rows, **table**_ ).
   * **columns**: Number of colspan in the row. Only available with the ouput **rows**.
   * **custom_content**: Content of the first column. Only availabie with the output **rows**.
 

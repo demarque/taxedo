@@ -1,6 +1,6 @@
 class Taxedo::Builder::Html < Taxedo::Builder::Base
-  def generate(format, options={})
-    case format
+  def generate(template, options={})
+    case template
       when :lines then lines
       when :rows then table_rows options[:columns], options[:custom_content]
       else table
@@ -23,7 +23,7 @@ class Taxedo::Builder::Html < Taxedo::Builder::Base
   def line(label, value, options={})
     options = { :class => '' }.merge(options)
 
-    @content << ('<div class="line ' + options[:class] + '"><label>' + label + '</label><span>' + price(value) + '</span></div>')
+    @content << ('<div class="line ' + options[:class] + '"><label>' + label + '</label><span class="price">' + price(value) + '</span></div>')
   end
 
   def table
@@ -32,7 +32,7 @@ class Taxedo::Builder::Html < Taxedo::Builder::Base
     @content << '</tbody></table>'
   end
 
-  def table_rows(columns=0, custom_content='')
+  def table_rows(columns=1, custom_content='')
     table_row t('subtotal'), subtotal, :class => 'subtotal', :custom_columns => columns, :custom_content => custom_content
     taxes.each { |tax| table_row tax.name, tax.amount, :class => "tax #{tax.id}" }
     table_row t('total'), total, :class => 'total'
@@ -43,7 +43,7 @@ class Taxedo::Builder::Html < Taxedo::Builder::Base
 
     content = ['<tr class="' + options[:class] + '">']
     content << '<td class="custom" rowspan="4" colspan="' + options[:custom_columns].to_s + '">' + options[:custom_content] + '</td>' if options[:custom_columns] > 0
-    content << '<td class="label">' + label + '</td><td class="value">' + price(value) + '</td></tr>'
+    content << '<td class="label" align="right">' + label + '</td><td class="value" align="right">' + price(value) + '</td></tr>'
 
     @content << content.join
   end

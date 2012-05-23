@@ -46,9 +46,9 @@ class Taxedo::Receipt
   end
 
   def to_html(options={})
-    options = { columns: 0, custom_content: '', format: :table }.merge(options)
+    options = { columns: 0, custom_content: '', template: :table }.merge(options)
 
-    return Taxedo::Builder::Html.new(self).generate(options[:format], options)
+    return Taxedo::Builder::Html.new(self).generate(options[:template], options)
   end
 
   def to_json
