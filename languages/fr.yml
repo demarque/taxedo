@@ -14,5 +14,9 @@ taxedo:
         taxes:
           gst:
             short: TPS
+          gst_zero:
+            short: TPS
           qst:
+            short: TVQ
+          qst_zero:
             short: TVQ

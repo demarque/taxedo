@@ -19,6 +19,10 @@ describe Taxedo::Region do
           the("result.total") { should eql 11396 }
         end
       end
+
+      context "when calculating taxes on 100$ with a rule that doesn't exists" do
+        it { expect { region.calculate(10000, :rule => 'unknown') }.to raise_error("TAXEDO: This tax rule doesn't exists!") }
+      end
     end
 
     context "with the can region" do

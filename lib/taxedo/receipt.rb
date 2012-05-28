@@ -18,6 +18,10 @@ class Taxedo::Receipt
     @taxes << tax
   end
 
+  def language
+    defined?(I18n) ? I18n.locale.to_s : 'fr'
+  end
+
   def subtotal
     @amount
   end
@@ -25,7 +29,10 @@ class Taxedo::Receipt
   def t(path)
     text = @translations
 
-    path.split('.').each { |p| text = text[p] }
+    path.split('.').each do |p|
+      raise "TAXEDO: No #{language} translation for #{path}." if not text
+      text = text[p]
+    end
 
     return text.to_s
   end
@@ -62,8 +69,6 @@ class Taxedo::Receipt
   private
 
   def load_translations
-    language = defined?(I18n) ? I18n.locale.to_s : 'fr'
-
     @translations = YAML.load_file(Taxedo.base_languages_path + "#{language}.yml")['taxedo'][language]
   end
 

@@ -27,6 +27,7 @@ taxedo:
 
       rules:
         standard: ['gst', 'qst']
+        non_taxable: ['gst_zero', 'qst_zero']
         books: ['gst']
 
       taxes:
@@ -34,8 +35,12 @@ taxedo:
           19910101: 700
           20060701: 600
           20080101: 500
+        gst_zero:
+          19910101: 0
         qst:
           19940513: 650
           19980101: 750
           20110101: 850
           20120101: 950
+        qst_zero:
+          19910101: 0

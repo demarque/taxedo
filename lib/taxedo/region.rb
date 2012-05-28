@@ -33,6 +33,8 @@ class Taxedo::Region
   end
 
   def taxes(rule, start_at)
+    raise 'TAXEDO: This tax rule doesn\'t exists!' if not @data['rules'][rule]
+
     @data['rules'][rule].map do |tax_id|
       tax_key = tax_from_start_date(tax_id, start_at)
 
