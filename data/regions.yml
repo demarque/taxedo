@@ -25,6 +25,10 @@ taxedo:
       currency: cad
       included: false
 
+      equation_types:
+        19910101: compiled
+        20130101: separated
+
       rules:
         standard: ['gst', 'qst']
         non_taxable: ['gst_zero', 'qst_zero']
@@ -42,5 +46,6 @@ taxedo:
           19980101: 750
           20110101: 850
           20120101: 950
+          20130101: 997.5
         qst_zero:
           19910101: 0

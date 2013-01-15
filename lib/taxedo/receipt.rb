@@ -1,5 +1,6 @@
 class Taxedo::Receipt
   attr_accessor :currency
+  attr_accessor :equation_type
 
   def initialize(region_id, amount)
     @region_id = region_id
@@ -13,9 +14,17 @@ class Taxedo::Receipt
     tax = Taxedo::Tax.new(id)
     tax.name = tax_name(id)
     tax.rate = rate
-    tax.source_amount = (@taxes.empty? ? @amount : @taxes.last.subtotal)
+    tax.source_amount = get_source_amount
 
     @taxes << tax
+  end
+
+  def get_source_amount
+    if @taxes.empty? or self.equation_type == 'separated'
+      @amount
+    else
+      @taxes.last.subtotal
+    end
   end
 
   def language
