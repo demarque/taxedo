@@ -8,11 +8,11 @@ class Taxedo::Region
   end
 
   def calculate(amount, options={})
-    options = { :on => Time.now, :rule => 'standard', :equations => 'compiled'}.merge(options)
+    options = { :on => Time.now, :rule => 'standard', :equation_type => 'compiled'}.merge(options)
 
     receipt = Taxedo::Receipt.new(@id, amount)
     receipt.currency = @data['currency']
-    receipt.equation_type = equation_type_from_date(options[:on]).nil? ? options[:equations] : equation_type_from_date(options[:on])
+    receipt.equation_type = equation_type_from_date(options[:on]).nil? ? options[:equation_type] : equation_type_from_date(options[:on])
 
     taxes(options[:rule], options[:on]).each do |tax|
       receipt.add_tax tax[0], tax[1]
@@ -25,11 +25,15 @@ class Taxedo::Region
 
   def equation_type_from_date(start_at)
     selection = Time.at(0)
-    @data['equation_types'].each do |equation_start_at, equation|
-      equation_start_at = Time.parse(equation_start_at.to_s)
-      selection = equation_start_at if equation_start_at <= start_at and equation_start_at > selection
+    if @data['equation_types'].nil?
+      return nil
+    else
+      @data['equation_types'].each do |equation_start_at, equation|
+        equation_start_at = Time.parse(equation_start_at.to_s)
+        selection = equation_start_at if equation_start_at <= start_at and equation_start_at > selection
+      end
+      return @data['equation_types'][selection.strftime('%Y%m%d').to_i]
     end
-    @data['equation_types'][selection.strftime('%Y%m%d').to_i]
   end
 
   def tax_from_start_date(tax_id, start_at)
